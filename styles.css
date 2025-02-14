@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cormorant Garamond', serif;
+    background-color: #ffcccb;  /* Light pink background */
+    color: black;  /* Set all text to black */
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+header {
+    text-align: center;
+    padding: 20px 0 10px 0;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    color: black;  /* Dark color for titles and subtitles */
+}
+
+.names {
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+    color: black;  /* Dark color for titles and subtitles */
+}
+
+/* Top Timeline Navigation */
+.timeline-nav {
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    margin-bottom: 40px;  /* Two-line equivalent gap */
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.timeline-nav-inner {
+    display: flex;
+    justify-content: space-between;  /* Ensure equal spacing between dots */
+    width: 100%;
+    height: 2px;
+    background: rgba(255, 105, 180, 0.2);  /* Light pink line */
+    margin: 20px 0;
+}
+
+.nav-dot {
+    width: 10px;  /* Adjust width of dots */
+    height: 10px;
+    background: rgba(255, 105, 180, 0.6);  /* Pink for dots */
+    border-radius: 50%;
+    margin: 0;  /* No margin for dots */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.nav-dot::after {
+    content: attr(data-date);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    font-size: 0.7rem;
+    color: black;  /* Darker color for dates */
+    opacity: 1;  /* Full opacity */
+}
+
+.nav-dot.active {
+    background: #b3004c;  /* Darker pink for active dot */
+    box-shadow: 0 0 6px rgba(255, 105, 180, 0.7);
+    transform: translateY(-50%) scale(1.2);
+}
+
+.nav-dot.active::after {
+    opacity: 1;
+    color: black;  /* Darker for active dates */
+}
+
+.nav-dot:hover {
+    transform: translateY(-50%) scale(1.2);
+    background: #b3004c;
+}
+
+/* Book Layout */
+.book {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    perspective: 2000px;
+}
+
+.page {
+    background-color: #ffc4c3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), 
+                opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+    backface-visibility: hidden;
+    display: none;
+}
+
+.page-content {
+    background: none;  /* Remove any previous background */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.image-container {
+    position: relative;
+    width: 80%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.timeline-img {
+    width: 100%;
+    height: auto;
+    max-height: 50vh;  /* Increase max height */
+    object-fit: cover;
+    border-radius: 4px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    background-color: transparent;
+    display: block;
+}
+
+.timeline-content {
+    background: none;  /* Remove any previous background */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: fadeInContent 0.6s ease forwards 0.4s;
+    color: black;  /* Change text color to black for all content under the timeline */
+}
+
+.timeline-date {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.timeline-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.timeline-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Page Turn Animations */
+@keyframes turnOutLeft {
+    from {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: rotateY(-60deg);
+        opacity: 0;
+    }
+}
+
+@keyframes turnInRight {
+    from {
+        transform: rotateY(60deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes turnOutRight {
+    from {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+    to {
+        transform: rotateY(60deg);
+        opacity: 0;
+    }
+}
+
+@keyframes turnInLeft {
+    from {
+        transform: rotateY(-60deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+.turnOutLeft {
+    animation: turnOutLeft 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+    transform-origin: left center;
+}
+
+.turnOutRight {
+    animation: turnOutRight 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+    transform-origin: right center;
+}
+
+.turnInLeft {
+    animation: turnInLeft 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+    transform-origin: left center;
+}
+
+.turnInRight {
+    animation: turnInRight 0.8s cubic-bezier(0.645, 0.045, 0.355, 1) forwards;
+    transform-origin: right center;
+}
+
+/* Page Shadow Effect */
+.page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to right, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0) 20%);
+    opacity: 0;
+    transition: opacity 0.8s;
+    pointer-events: none;
+}
+
+.page.active::after {
+    opacity: 1;
+}
+
+/* Content Fade Effect */
+@keyframes fadeInContent {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    z-index: 1000;
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: black;  /* Dark for navigation buttons */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    opacity: 0.7;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-btn.prev-btn {
+    margin-left: -10px;
+}
+
+.nav-btn.next-btn {
+    margin-right: -10px;
+}
+
+.nav-btn i {
+    font-size: 2.5rem;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+}
+
+.nav-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    color: black;  /* Keep dark on hover */
+}
+
+.nav-btn:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@media screen and (max-width: 768px) {
+    .image-container {
+        width: 90%;
+        padding: 10px 30px;
+    }
+
+    .timeline-img {
+        max-height: 40vh;  /* Adjust max height for mobile */
+    }
+
+    .timeline-content {
+        padding: 15px;
+    }
+
+    .timeline-title {
+        font-size: 1.1rem;
+    }
+
+    .timeline-description {
+        font-size: 0.8rem;
+    }
+
+    .nav-btn i {
+        font-size: 2rem;
+    }
+
+    .nav-buttons {
+        padding: 0 10px;
+    }
+
+    .nav-btn.prev-btn {
+        left: -40px;
+    }
+
+    .nav-btn.next-btn {
+        right: -40px;
+    }
+
+    .timeline-nav {
+        top: 0;
+    }
+
+    .timeline-nav-inner {
+        padding: 0 10px;
+        background: rgba(255, 105, 180, 0.3);  /* Adjust for mobile */
+    }
+
+    .nav-dot::after {
+        top: -20px;
+        font-size: 0.6rem;
+        padding: 1px 3px;
+    }
+
+    .book {
+        margin-top: 10px;
+    }
+
+    .timeline-nav {
+        margin-bottom: 20px;  /* Slightly less on mobile */
+    }
+}

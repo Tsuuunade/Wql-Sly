@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A STORY WITH NO ENDING</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <style>
+        .blur-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="music-icons" style="display: flex; justify-content: center; gap: 10px;">
+                <div class="music-icon" onclick="playAudio('backgroundMusic');">
+                    <i class="fas fa-music" style="color: rgb(191, 112, 255);"></i>
+                </div>
+                <div class="music-icon" onclick="playAudio('oldMusic');">
+                    <i class="fas fa-music" style="color: rgba(255, 6, 6, 0.507);"></i>
+                </div>
+            </div>
+            <div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+                <i class="fas fa-hourglass-start" style="color: black;"></i>
+                <h1 style="margin: 0;">A STORY WITH NO ENDING</h1>
+                <i class="fas fa-hourglass-end" style="color: black;"></i>
+            </div>
+            <div class="names">吴千里 & 孙路逸</div>
+        </header>
+
+        <nav class="timeline-nav">
+            <div class="timeline-nav-inner">
+                <div class="nav-dot" data-page="0" data-date="Oct 30, 2019" onclick="goToPage(0)"></div>
+                <div class="nav-dot" data-page="1" data-date="Dec 22, 2019" onclick="goToPage(1)"></div>
+                <div class="nav-dot" data-page="2" data-date="Apr 26, 2021" onclick="goToPage(2)"></div>
+                <div class="nav-dot" data-page="3" data-date="May 29, 2021" onclick="goToPage(3)"></div>
+                <div class="nav-dot" data-page="4" data-date="Aug 06, 2021" onclick="goToPage(4)"></div>
+                <div class="nav-dot" data-page="5" data-date="Mar 14, 2022" onclick="goToPage(5)"></div>
+                <div class="nav-dot" data-page="6" data-date="Dec 20, 2022" onclick="goToPage(6)"></div>
+                <div class="nav-dot" data-page="7" data-date="May 19, 2023" onclick="goToPage(7)"></div>
+                <div class="nav-dot" data-page="8" data-date="Aug 17, 2023" onclick="goToPage(8)"></div>
+                <div class="nav-dot" data-page="9" data-date="Dec 21, 2023" onclick="goToPage(9)"></div>
+                <div class="nav-dot" data-page="10" data-date="Jun 20, 2024" onclick="goToPage(10)"></div>
+                <div class="nav-dot" data-page="11" data-date="Dec 23, 2024" onclick="goToPage(11)"></div>
+            </div>
+        </nav>
+
+        <img id="previewImage" src="" alt="Preview" style="display:none; position:absolute; z-index:1000; width:200px; height:auto; border:2px solid #ff69b4; border-radius:5px;">
+
+        <div class="blur-overlay" style="display:none;"></div>
+
+        <div class="book">
+            <div class="page" id="page-0">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Oct 30, 2019</div>
+                        <h2 class="timeline-title">和你过的第一个生日</h2>
+                        <div class="image-container">
+                            <img src="2019_10_30.jpg" alt="First Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()" disabled>
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()">
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>记得当时不让订蛋糕，蛋糕还是我从保安室偷偷拿进来的。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-1">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dec 22, 2019</div>
+                        <h2 class="timeline-title">第一次去迪士尼</h2>
+                        <div class="image-container">
+                            <img src="2019_12_22.jpg" alt="Spring Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()">
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()">
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>去太早了没等到烟花，到现在了还是没有一起看过迪士尼的烟花。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-2">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Apr 26, 2021</div>
+                        <h2 class="timeline-title">最后一天上学</h2>
+                        <div class="image-container">
+                            <img src="2021_04_26.jpg" alt="Growing Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()">
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()">
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>你一直不喜欢那个奶奶味香水，就一直放在柜子里，直到最后一天上学才带回家。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-3">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">May 29, 2021</div>
+                        <h2 class="timeline-title">毕业典礼</h2>
+                        <div class="image-container">
+                            <img src="2021_05_29.jpg" alt="Summer Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()">
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()">
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>我爸妈给我们拍的第一张照片，你看上去好局促。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-4">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Aug 06, 2021</div>
+                        <h2 class="timeline-title">第一次机场告别</h2>
+                        <div class="image-container">
+                            <img src="2021_08_06.jpg" alt="Autumn Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()">
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()">
+                                    <i class="fas fa-plane"></i>
+                                </button>
+                            </div>
+            </div>
+                        <p>谁都不知道以后以后会发生什么，未来是一片迷茫。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-5">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Mar 14, 2022</div>
+                        <h2 class="timeline-title">在纽约见上了</h2>
+                        <div class="image-container">
+                            <img src="2022_03_14.jpg" alt="Autumn Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()">
+                                    <i class="fas fa-plane" style="transform: scaleX(-1);"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()">
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+            </div>
+                        <p>艾尔登法环快通关了，我已经打了70多小时了。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-6">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dec 20, 2022</div>
+                        <h2 class="timeline-title">大熊湖滑雪</h2>
+                        <div class="image-container">
+                            <img src="2022_12_20.jpg" alt="Autumn Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()">
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()">
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>这估计是你第一次，也是最后一次滑雪了。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-7">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">May 19, 2023</div>
+                        <h2 class="timeline-title">和小白</h2>
+                        <div class="image-container">
+                            <img src="2023_05_19.jpg" alt="Autumn Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()">
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()">
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>当时它还不叫Ecto；我们去看了elementals，这成为了你今后最喜欢的电影之一。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-8">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Aug 17, 2023</div>
+                        <h2 class="timeline-title">杭州拍照</h2>
+                        <div class="image-container">
+                            <img src="2023_08_17.jpg" alt="Autumn Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()">
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()">
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>你还真能拉着我这种人去拍照，算你厉害，但说实话我很喜欢这些照片。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-9">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dec 21, 2023</div>
+                        <h2 class="timeline-title">西雅图过圣诞</h2>
+                        <div class="image-container">
+                            <img src="2023_12_21.jpg" alt="Autumn Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()">
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()">
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>这张照片是我的手机壁纸，一直用到现在。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-10">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Jun 20, 2024</div>
+                        <h2 class="timeline-title">台州邓紫棋</h2>
+                        <div class="image-container">
+                            <img src="2024_06_20.jpg" alt="Autumn Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()">
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()">
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>这是我最爱的演唱会，没有之一，谢谢你提前找黄牛抢的票。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="page" id="page-11">
+                <div class="page-content">
+                    <div class="timeline-content">
+                        <div class="timeline-date">Dec 23, 2024</div>
+                        <h2 class="timeline-title">神秘北极圈，阿拉斯加的山巅</h2>
+                        <div class="image-container">
+                            <img src="2024_12_23.jpg" alt="Autumn Memory" class="timeline-img">
+                            <div class="nav-buttons">
+                                <button class="nav-btn prev-btn" onclick="prevPage()">
+                                    <i class="fas fa-arrow-circle-left"></i>
+                                </button>
+                                <button class="nav-btn next-btn" onclick="nextPage()" disabled>
+                                    <i class="fas fa-arrow-circle-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <p>谁的脸，出现海角的天边。哦，是你的脸啊。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <audio id="backgroundMusic" src="G.E.M.邓紫棋-多远都要在一起.mp3"></audio>
+        <audio id="oldMusic" src="周杰伦 - 爱在西元前.mp3"></audio>
+
+        <script>
+            let currentPage = 0;
+            const totalPages = 12;
+            let isAnimating = false;
+
+            let currentAudio = null;  // Keep track of the currently playing audio
+
+            function playAudio(audioId) {
+                if (currentAudio) {
+                    currentAudio.pause();  // Stop the current audio
+                    currentAudio.currentTime = 0;  // Reset to the beginning
+                }
+                currentAudio = document.getElementById(audioId);
+                currentAudio.play();  // Play the new audio
+            }
+
+            function updateNavButtons() {
+                document.querySelector('.prev-btn').disabled = currentPage === 0;
+                document.querySelector('.next-btn').disabled = currentPage === totalPages - 1;
+            }
+
+            function initializePages() {
+                // Show the first page by default
+                const firstPageEl = document.querySelector('#page-0');
+                firstPageEl.style.display = 'block';
+                firstPageEl.style.position = 'relative';
+                firstPageEl.classList.add('active');
+                firstPageEl.style.opacity = '1';
+                firstPageEl.style.transform = 'rotateY(0deg)';
+            }
+
+            function goToPage(pageNum) {
+                if (pageNum < 0 || pageNum >= totalPages || isAnimating) return;
+
+                isAnimating = true;
+                const currentPageEl = document.querySelector(`#page-${currentPage}`);
+                const nextPageEl = document.querySelector(`#page-${pageNum}`);
+                
+                // Hide all pages first
+                document.querySelectorAll('.page').forEach(page => {
+                    if (page !== nextPageEl) {
+                        page.style.display = 'none';
+                        page.classList.remove('active');
+                    }
+                });
+
+                // Position next page
+                nextPageEl.style.position = 'absolute';
+                nextPageEl.style.top = '0';
+                nextPageEl.style.left = '0';
+                nextPageEl.style.width = '100%';
+                nextPageEl.style.display = 'block';
+                nextPageEl.style.opacity = '0';
+                
+                // Direction of animation
+                const direction = pageNum > currentPage ? 'next' : 'prev';
+                
+                // Remove previous animation classes
+                currentPageEl.classList.remove('turnOutLeft', 'turnOutRight', 'turnInLeft', 'turnInRight');
+                nextPageEl.classList.remove('turnOutLeft', 'turnOutRight', 'turnInLeft', 'turnInRight');
+                
+                // Add new animation classes
+                if (direction === 'next') {
+                    // For next button, start from bottom
+                    nextPageEl.style.transform = 'translateY(100%)';
+                    currentPageEl.classList.add('turnOutLeft');
+                    
+                    // Animate next page up
+                    setTimeout(() => {
+                        nextPageEl.style.transition = 'all 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)';
+                        nextPageEl.style.transform = 'translateY(0)';
+                        nextPageEl.style.opacity = '1';
+                    }, 50);
+                    
+                    nextPageEl.classList.add('turnInRight');
+                } else {
+                    currentPageEl.classList.add('turnOutRight');
+                    nextPageEl.classList.add('turnInLeft');
+                }
+
+                // Update active states after animation
+                setTimeout(() => {
+                    nextPageEl.classList.add('active');
+                    isAnimating = false;
+                    
+                    // Reset styles
+                    nextPageEl.style.position = 'relative';
+                    nextPageEl.style.transform = 'none';
+                    nextPageEl.style.transition = 'none';
+                }, 800);
+                
+                currentPage = pageNum;
+                updateNavButtons();
+
+                // Update active dot
+                document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+                    if (index === currentPage) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+
+                // Prevent scrolling
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'instant'
+                });
+            }
+
+            function nextPage() {
+                goToPage(currentPage + 1);
+            }
+
+            function prevPage() {
+                goToPage(currentPage - 1);
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight') nextPage();
+                if (e.key === 'ArrowLeft') prevPage();
+            });
+
+            // Initialize on page load
+            document.addEventListener('DOMContentLoaded', () => {
+                initializePages();
+                updateNavButtons();
+                document.querySelector('.nav-dot').classList.add('active');
+            });
+
+            document.querySelectorAll('.nav-dot').forEach(dot => {
+                dot.addEventListener('mouseover', function() {
+                    const pageIndex = this.getAttribute('data-page');
+                    const imgSrc = document.querySelector(`#page-${pageIndex} .timeline-img`).src;
+                    const previewImage = document.getElementById('previewImage');
+                    previewImage.src = imgSrc;
+                    previewImage.style.display = 'block';
+                    previewImage.style.top = (this.getBoundingClientRect().bottom + window.scrollY + 10) + 'px';
+                    previewImage.style.left = (this.getBoundingClientRect().left + (this.getBoundingClientRect().width / 2) - (previewImage.width / 2)) + 'px';
+                    document.querySelector('.blur-overlay').style.display = 'block';
+                });
+                dot.addEventListener('mouseout', function() {
+                    const previewImage = document.getElementById('previewImage');
+                    previewImage.style.display = 'none';
+                    document.querySelector('.blur-overlay').style.display = 'none';
+                });
+            });
+        </script>
+    </div>
+</body>
+</html>
